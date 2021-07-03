@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import javax.swing.*;
 
 /**
  * @author $Author: mirkosertic $
@@ -63,6 +64,16 @@ public class ERDesignerMainFrame extends DefaultFrame implements
             @Override
             public void windowClosing(WindowEvent e) {
                 exitApplication();
+            }
+            public void windowOpened(WindowEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(null, 
+                    "Welcome, Do you want to load?", "Mogwai",
+                    JOptionPane.YES_NO_OPTION);
+                 OpenFromFileCommand load = new OpenFromFileCommand();
+            
+                if (confirmed == JOptionPane.YES_OPTION) {
+                  load.execute();
+                }
             }
         });
 
